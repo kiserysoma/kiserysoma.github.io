@@ -34,14 +34,14 @@
             button.hidden = true;
           });
 		  
-		    marker_kanji.addEventListener("markerFound", function (evt) {
+		    marker_kanji.addEventListener("marker_kanjiLost", function (evt) {
             markerFound = 1;
             button.hidden = false;
             // Video_0.play();  // if you want the video 
             // to start immediently on marker detection, uncomment this
           });
 
-          marker_kanji.addEventListener("markerLost", function (evt) {
+          marker_kanji.addEventListener("marker_kanjiLost", function (evt) {
             markerFound = 0;
             Video_0.pause();
             button.hidden = true;
