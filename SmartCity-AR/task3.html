@@ -8,7 +8,6 @@
         <a-scene embedded arjs>
             <a-assets>
                 <audio id="helmet_sound" src="assets/Kalimba.mp3" response-type="arraybuffer" autoplay="true" loop></audio>
-				<video id="helmet_video" src="assets/video.mp4" autoplay="true" loop></video>
                 <a-asset-item id="helmet" src="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/KhronosGroup/glTF-Sample-Models/master/2.0/SciFiHelmet/glTF/SciFiHelmet.gltf"></a-asset-item>
             </a-assets>
 
@@ -23,8 +22,6 @@
                 gltf-model="#helmet"
                 >
                 </a-entity>
-				
-				<a-video src="#helmet_video" scale="10 10 10"></a-video>
 
                 <!-- second entity: reference to the above audio -->
                 <a-entity sound="src: #helmet_sound; volume: 80; loop: true">
