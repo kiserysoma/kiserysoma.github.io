@@ -19,8 +19,8 @@
 		  
           var fullbutton = document.querySelector("#fullscreen");
 		  
-          var Video_0 = document.querySelector("#Video_Asset_0");
-		  var Video_1 = document.querySelector("#Video_Asset_1");
+          var Video_0 = document.querySelector("#Video_0");
+		  var Video_1 = document.querySelector("#Video_1");
 		  
           var hiro_button = document.querySelector("#hiromutebutton");
 		  var kanji_button = document.querySelector("#kanjimutebutton");
@@ -32,14 +32,14 @@
 		  Video_1.pause();
 		  //Video_0.muted = true;
 		  //Video_1.muted = true;
-		  Video_0.crossOrigin = 'anonymous';
-		  Video_1.crossOrigin = 'anonymous';
+		  //Video_0.crossOrigin = 'anonymous';
+		  //Video_1.crossOrigin = 'anonymous';
 		  fullscreen = 0;
 
           marker_hiro.addEventListener("markerFound", function (evt) {
             markerFound = 1;
             hiro_button.hidden = false;
-             Video_0.play();  // if you want the video 
+             //Video_0.play();  // if you want the video 
             // to start immediently on marker detection, uncomment this
           });
 
@@ -52,7 +52,7 @@
 		    marker_kanji.addEventListener("markerFound", function (evt) {
             markerFound = 1;
             kanji_button.hidden = false;
-            Video_1.play();  // if you want the video 
+            //Video_1.play();  // if you want the video 
             // to start immediently on marker detection, uncomment this
           });
 
