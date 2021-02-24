@@ -13,42 +13,66 @@
         init: function ()
         {
           var elem = document.documentElement;
-          var marker = document.querySelector("#marker");
+		  
+          var marker_hiro = document.querySelector("#marker_hiro");
 		  var marker_kanji = document.querySelector("#marker_kanji");
+		  
           var fullbutton = document.querySelector("#fullscreen");
+		  
           var Video_0 = document.querySelector("#Video_Asset_0");
-          var button = document.querySelector("#mutebutton");
-          button.hidden = true;
+		  var Video_1 = document.querySelector("#Video_Asset_1");
+		  
+          var hiro_button = document.querySelector("#mutebutton");
+		  var kanji_button = document.querySelector("#mutebutton");
+		  
+          hiro_button.hidden = true;
+		  kanji_button.hidden = true;
+		  
           Video_0.pause();
+		  Video_1.pause();
 
-          marker.addEventListener("markerFound", function (evt) {
+          marker_hiro.addEventListener("markerFound", function (evt) {
             markerFound = 1;
-            button.hidden = false;
-            // Video_0.play();  // if you want the video 
+            hiro_button.hidden = false;
+             // Video_0.play();  // if you want the video 
             // to start immediently on marker detection, uncomment this
           });
 
-          marker.addEventListener("markerLost", function (evt) {
+          marker_hiro.addEventListener("markerLost", function (evt) {
             markerFound = 0;
             Video_0.pause();
-            button.hidden = true;
+            hiro_button.hidden = true;
           });
 		  
-		    marker_kanji.addEventListener("marker_kanjiLost", function (evt) {
+		    marker_kanji.addEventListener("markerFound", function (evt) {
             markerFound = 1;
-            button.hidden = false;
-            Video_0.play();  // if you want the video 
+            kanji_button.hidden = false;
+            //Video_1.play();  // if you want the video 
             // to start immediently on marker detection, uncomment this
           });
 
-          marker_kanji.addEventListener("marker_kanjiLost", function (evt) {
+          marker_kanji.addEventListener("markerLost", function (evt) {
             markerFound = 0;
             Video_0.pause();
-            button.hidden = true;
+            kanji_button.hidden = true;
           });
 
-          // button for video play/pause
-          button.addEventListener("click", function(evt){
+          // button for video play/pause KANJI
+          kanji_button.addEventListener("click", function(evt){
+            console.log("button clicked")
+            if(Video_1.muted==true){
+              button.innerHTML="Pause";
+              Video_1.muted=false;
+              Video_1.play();
+            }else{
+              button.innerHTML="Play";
+              Video_1.muted=true;
+              Video_1.pause();
+            }
+          });
+		  
+		  // button for video play/pause HIRO
+          hiro_button.addEventListener("click", function(evt){
             console.log("button clicked")
             if(Video_0.muted==true){
               button.innerHTML="Pause";
@@ -60,6 +84,8 @@
               Video_0.pause();
             }
           });
+		  
+		  
 
           // button for full screen
           fullbutton.addEventListener("click",
@@ -104,24 +130,29 @@
   </script>
 </head>
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
+
   <div style='position: absolute; bottom: 10px; right: 30px; width:100%; text-align: center; z-index: 1;'>
-    <button id="mutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
+    <button id="kanjimutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
+	<button id="hiromutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
   </div>
+  
   <div style='position: absolute; bottom: 5px; left: 30px; width:100%; text-align: right; z-index: 1;'>
     <input type="image" id="fullscreen" src="assets/fullscreen.png" style='position: absolute; bottom: 0px; right: 35px;'></input>
   </div>
+  
   <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false">
     <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: .intersectable; useWorldCoordinates: true;"></a-entity>
     <a-assets>
       <video id="Video_Asset_0" autoplay="false" loop crossorigin="anonymous" src="assets/video.mp4" webkit-playsinline playsinline controls muted></video>
+	  <video id="Video_Asset_1" autoplay="false" loop crossorigin="anonymous" src="assets/video2.mp4" webkit-playsinline playsinline controls muted></video>
     </a-assets>
 	
-    <a-marker id="marker" preset="hiro" emitevents="true" button>
+    <a-marker id="marker_hiro" preset="hiro" emitevents="true" button>
       <a-video src="#Video_Asset_0" id="Video_0" class="intersectable" width="1" height="1" position="0 0 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
     </a-marker>
 	
 	<a-marker id="marker_kanji" preset="kanji" emitevents="true" button>
-      <a-video src="#Video_Asset_0" id="Video_0" class="intersectable" width="1" height="1" position="0 0 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+      <a-video src="#Video_Asset_1" id="Video_1" class="intersectable" width="1" height="1" position="0 0 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
     </a-marker>
 	
     <a-entity camera></a-entity>
