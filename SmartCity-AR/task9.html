@@ -61,11 +61,11 @@
           kanji_button.addEventListener("click", function(evt){
             console.log("button clicked")
             if(Video_1.muted==true){
-              button.innerHTML="Pause";
+              kanji_button.innerHTML="Pause";
               Video_1.muted=false;
               Video_1.play();
             }else{
-              button.innerHTML="Play";
+              kanji_button.innerHTML="Play";
               Video_1.muted=true;
               Video_1.pause();
             }
@@ -75,11 +75,11 @@
           hiro_button.addEventListener("click", function(evt){
             console.log("button clicked")
             if(Video_0.muted==true){
-              button.innerHTML="Pause";
+              hiro_button.innerHTML="Pause";
               Video_0.muted=false;
               Video_0.play();
             }else{
-              button.innerHTML="Play";
+              hiro_button.innerHTML="Play";
               Video_0.muted=true;
               Video_0.pause();
             }
