@@ -34,6 +34,7 @@
           marker_hiro.addEventListener("markerFound", function (evt) {
             markerFound = 1;
             hiro_button.hidden = false;
+			Video_0.muted=true;
              //Video_0.play();  // if you want the video 
             // to start immediently on marker detection, uncomment this
           });
@@ -47,13 +48,14 @@
 		    marker_kanji.addEventListener("markerFound", function (evt) {
             markerFound = 1;
             kanji_button.hidden = false;
+			Video_1.muted=true;
             //Video_1.play();  // if you want the video 
             // to start immediently on marker detection, uncomment this
           });
 
           marker_kanji.addEventListener("markerLost", function (evt) {
             markerFound = 0;
-            Video_0.pause();
+            Video_1.pause();
             kanji_button.hidden = true;
           });
 
